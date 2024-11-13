@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Sip and Savor</string>
+    <string name="next">Next</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_web_client_id">524741900436-4oulfd47q3li52s23hujii33si2cfo1e.apps.googleusercontent.com</string>
+</resources>
