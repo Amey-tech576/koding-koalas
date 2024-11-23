@@ -77,7 +77,7 @@ class PayOutActivity : AppCompatActivity() {
             }
             else if (gpay.isChecked) {
                 val intent = Intent(Intent.ACTION_VIEW)
-                val url = Uri.parse("https://upilinks.in/payment-link/upi665477116")
+                val url = Uri.parse("https://upilinks.in/payment-link/upi728579088")
                 intent.data = url
                 startActivity(intent)
             }

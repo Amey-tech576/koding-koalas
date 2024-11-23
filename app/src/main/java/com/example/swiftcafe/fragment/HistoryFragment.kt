@@ -62,7 +62,7 @@ class HistoryFragment : Fragment() {
         if (!userPhoneNumber.isNullOrBlank()) {
             try {
                 val smsManager = SmsManager.getDefault()
-                val smsMessage = "Your order from SwiftCafe is ready. Enjoy your meal!"
+                val smsMessage = "Your order from Sip and Savor is ready. Enjoy your meal!"
                 smsManager.sendTextMessage(userPhoneNumber, null, smsMessage, null, null)
                 Toast.makeText(requireContext(), "Order Ready", Toast.LENGTH_SHORT).show()
             } catch (e: Exception) {
