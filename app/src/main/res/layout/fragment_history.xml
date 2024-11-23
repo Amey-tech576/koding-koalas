@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!-- Title TextView -->
         <TextView
             android:id="@+id/textView25"
             android:layout_width="wrap_content"
@@ -24,6 +26,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <!-- CardView -->
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView6"
             android:layout_width="match_parent"
@@ -34,13 +37,14 @@
             app:cardCornerRadius="15dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView25">
+            app:layout_constraintTop_toBottomOf="@id/textView25">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/recentbuyitem"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <!-- ImageView -->
                 <ImageView
                     android:id="@+id/buyAgainFoodImage"
                     android:layout_width="62dp"
@@ -53,6 +57,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <!-- Food Name TextView -->
                 <TextView
                     android:id="@+id/buyAgainFoodName"
                     android:layout_width="wrap_content"
@@ -62,10 +67,11 @@
                     android:text="FoodName"
                     android:textColor="@color/black"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/buyAgainFoodPrice"
-                    app:layout_constraintStart_toEndOf="@+id/buyAgainFoodImage"
+                    app:layout_constraintBottom_toTopOf="@id/buyAgainFoodPrice"
+                    app:layout_constraintStart_toEndOf="@id/buyAgainFoodImage"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <!-- Food Price TextView -->
                 <TextView
                     android:id="@+id/buyAgainFoodPrice"
                     android:layout_width="wrap_content"
@@ -75,36 +81,24 @@
                     android:textColor="@color/textColor"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/buyAgainFoodName"
-                    app:layout_constraintTop_toBottomOf="@+id/buyAgainFoodName" />
+                    app:layout_constraintStart_toStartOf="@id/buyAgainFoodName"
+                    app:layout_constraintTop_toBottomOf="@id/buyAgainFoodName" />
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/orderdStutus"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="40dp"
-                    app:cardBackgroundColor="#C6C6C6"
-                    app:cardCornerRadius="20dp"
-                    app:layout_constraintBottom_toTopOf="@+id/receivedButton"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
+                <!-- Button -->
                 <Button
                     android:id="@+id/receivedButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/textColor"
-                    android:text="Received"
+                    android:text="Prepared"
                     android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/orderdStutus"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="@+id/orderdStutus"
-                    app:layout_constraintTop_toBottomOf="@+id/orderdStutus" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </androidx.cardview.widget.CardView>
 
+        <!-- Secondary Title TextView -->
         <TextView
             android:id="@+id/textView33"
             android:layout_width="wrap_content"
@@ -112,12 +106,13 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/yeonsung_regular"
-            android:text="Recnt buy"
+            android:text="Recent Buy"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView6" />
+            app:layout_constraintTop_toBottomOf="@id/cardView6" />
 
+        <!-- RecyclerView -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/BuyAgainRecyclerView"
             android:layout_width="match_parent"
@@ -126,9 +121,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView33"
+            app:layout_constraintTop_toBottomOf="@id/textView33"
             tools:listitem="@layout/buy_again_item" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -55,7 +55,7 @@
                 android:layout_marginLeft="16dp"
                 android:fontFamily="@font/lato_regular"
                 android:text="TextView"
-                android:textColor="@color/textColor"
+                android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/cartImage"
                 app:layout_constraintTop_toBottomOf="@+id/cartFoodName" />

@@ -32,7 +32,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/yeonsung_regular"
             android:text="Edit"
-            android:textColor="@color/textColor"
+            android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -245,5 +245,5 @@
         android:fontFamily="@font/yeonsung_regular"
         android:text="Place My Order"
         android:textAllCaps="false"
-        android:textColor="@color/textColor" />
+        android:textColor="@color/black" />
 </FrameLayout>

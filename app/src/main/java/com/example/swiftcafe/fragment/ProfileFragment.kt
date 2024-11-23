@@ -19,41 +19,51 @@ class ProfileFragment : Fragment() {
 
     private val auth = FirebaseAuth.getInstance()
     private val database = FirebaseDatabase.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
-
         setUserData()
+
         binding.apply {
             name.isEnabled = false
             email.isEnabled = false
             address.isEnabled = false
             phone.isEnabled = false
-            binding.editButton.setOnClickListener {
 
+            editButton.setOnClickListener {
                 name.isEnabled = !name.isEnabled
                 email.isEnabled = !email.isEnabled
                 address.isEnabled = !address.isEnabled
                 phone.isEnabled = !phone.isEnabled
             }
         }
-        binding.saveInfoButton.setOnClickListener {
-            val name = binding.name.text.toString()
-            val email = binding.email.text.toString()
-            val address = binding.address.text.toString()
-            val phone = binding.phone.text.toString()
 
-            updateUserData(name, email, address, phone)
+        binding.saveInfoButton.setOnClickListener {
+            val name = binding.name.text.toString().trim()
+            val email = binding.email.text.toString().trim()
+            val address = binding.address.text.toString().trim()
+            val phone = binding.phone.text.toString().trim()
+
+            // Validate the phone number
+            if (phone.length == 10 && phone.all { it.isDigit() }) {
+                updateUserData(name, email, address, phone)
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Phone number is not valid! Please enter a 10-digit number. 😜",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
+
         return binding.root
     }
 
@@ -68,20 +78,21 @@ class ProfileFragment : Fragment() {
                 "email" to email,
                 "phone" to phone
             )
+
             userReference.setValue(userData).addOnSuccessListener {
                 Toast.makeText(
                     requireContext(),
-                    "Profile Update successfully 😊",
+                    "Profile updated successfully 😊",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }.addOnFailureListener {
+                Toast.makeText(
+                    requireContext(),
+                    "Profile update failed 😒",
                     Toast.LENGTH_SHORT
                 ).show()
             }
-                .addOnFailureListener {
-                    Toast.makeText(requireContext(), "Profile Update Failed 😒", Toast.LENGTH_SHORT)
-                        .show()
-                }
-
         }
-
     }
 
     private fun setUserData() {
@@ -103,12 +114,9 @@ class ProfileFragment : Fragment() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-
+                    // Log or handle database error if needed
                 }
             })
-
-
         }
     }
-
 }

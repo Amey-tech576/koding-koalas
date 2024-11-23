@@ -2,8 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="textColor">#1FC57A</color>
-    <color name="startColor">#53E88B</color>
-    <color name="endColor">#15BE77</color>
+    <color name="textColor">#D51C5B</color>
+    <color name="startColor">#E85353</color>
+    <color name="endColor">#BE1515</color>
+    <color name="background">#6D52F0</color>
     <color name="iconColor">#FEAD1D</color>
+    <color name="button_color">#FF5722</color> <!-- Replace with your desired color -->
+
 </resources>

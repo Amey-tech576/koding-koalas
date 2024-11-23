@@ -34,7 +34,6 @@ class PayOutActivity : AppCompatActivity() {
     private lateinit var userId: String
     private lateinit var gpay: RadioButton
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPayOutBinding.inflate(layoutInflater)
@@ -43,11 +42,11 @@ class PayOutActivity : AppCompatActivity() {
         // Initialize Firebase and User details
         auth = FirebaseAuth.getInstance()
         databaseReference = FirebaseDatabase.getInstance().getReference()
-        // set user data
+
+        // Set user data
         setUserData()
 
-        // get user details form Firebase
-
+        // Retrieve intent data
         val intent = intent
         foodItemName = intent.getStringArrayListExtra("FoodItemName") as ArrayList<String>
         foodItemPrice = intent.getStringArrayListExtra("FoodItemPrice") as ArrayList<String>
@@ -56,61 +55,62 @@ class PayOutActivity : AppCompatActivity() {
         foodItemIngredient = intent.getStringArrayListExtra("FoodItemIngredient") as ArrayList<String>
         foodItemQuantities = intent.getIntegerArrayListExtra("FoodItemQuantities") as ArrayList<Int>
 
-        totalAmount = calculateTotalAmount().toString() +"₹"
-        // binding.totalAmount.isEnabled = false
+        totalAmount = calculateTotalAmount().toString() + "₹"
         binding.totalAmount.setText(totalAmount)
+
         binding.backeButton.setOnClickListener {
             finish()
         }
+
         binding.PlaceMyOrder.setOnClickListener {
-            // get data from textview
+            // Retrieve data from text fields
             gpay = findViewById(R.id.radioButtonGPay)
             name = binding.name.text.toString().trim()
             address = binding.address.text.toString().trim()
             phone = binding.phone.text.toString().trim()
-            if (name.isBlank()){
-                Toast.makeText(this, "Please Enter All The Details 😜", Toast.LENGTH_SHORT).show()
-            }else if(address.isBlank()) {
-                Toast.makeText(this, "Please Enter All The Details 😜", Toast.LENGTH_SHORT).show()
-            }else if(phone.isBlank()){
-                Toast.makeText(this, "Please Enter All The Details 😜", Toast.LENGTH_SHORT).show()
-            }
-            else if (gpay.isChecked) {
-                val intent = Intent(Intent.ACTION_VIEW)
-                val url = Uri.parse("https://upilinks.in/payment-link/upi728579088")
-                intent.data = url
-                startActivity(intent)
-            }
 
-            else {
-                placeOrder()
+            // Validation checks
+            when {
+                name.isBlank() || address.isBlank() || phone.isBlank() -> {
+                    Toast.makeText(this, "Please Enter All The Details 😜", Toast.LENGTH_SHORT).show()
+                }
+                phone.length < 10 -> {
+                    Toast.makeText(this, "Phone number must be at least 10 digits! 😜", Toast.LENGTH_SHORT).show()
+                }
+                gpay.isChecked -> {
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    val url = Uri.parse("https://upilinks.in/payment-link/upi728579088")
+                    intent.data = url
+                    startActivity(intent)
+                }
+                else -> {
+                    placeOrder()
+                }
             }
-
         }
     }
 
     private fun placeOrder() {
-        userId = auth.currentUser?.uid?:""
+        userId = auth.currentUser?.uid ?: ""
         val time = System.currentTimeMillis()
-        val itemPushKey= databaseReference.child("OrderDetails").push().key
-        val orderDetails = OrderDetails(userId, name, foodItemName, foodItemPrice, foodItemImage, foodItemQuantities, address, totalAmount, phone, time, itemPushKey, false, false)
+        val itemPushKey = databaseReference.child("OrderDetails").push().key
+        val orderDetails = OrderDetails(
+            userId, name, foodItemName, foodItemPrice, foodItemImage, foodItemQuantities,
+            address, totalAmount, phone, time, itemPushKey, false, false
+        )
         val orderReference = databaseReference.child("OrderDetails").child(itemPushKey!!)
         orderReference.setValue(orderDetails).addOnSuccessListener {
             val bottomSheetDialog = CongratsBottomSheet()
             bottomSheetDialog.show(supportFragmentManager, "Test")
             removeItemFromCart()
             addOrderToHistory(orderDetails)
-
+        }.addOnFailureListener {
+            Toast.makeText(this, "Failed to order 😒", Toast.LENGTH_SHORT).show()
         }
-            .addOnFailureListener {
-                Toast.makeText(this, "failed to order 😒", Toast.LENGTH_SHORT).show()
-            }
     }
 
     private fun addOrderToHistory(orderDetails: OrderDetails) {
-        databaseReference.child("user").child(userId).child("BuyHistory").child(orderDetails.itemPushKey!!).setValue(orderDetails).addOnSuccessListener {
-
-        }
+        databaseReference.child("user").child(userId).child("BuyHistory").child(orderDetails.itemPushKey!!).setValue(orderDetails)
     }
 
     private fun removeItemFromCart() {
@@ -120,17 +120,11 @@ class PayOutActivity : AppCompatActivity() {
 
     private fun calculateTotalAmount(): Int {
         var totalAmount = 0
-        for ( i in 0 until foodItemPrice.size){
-            var price = foodItemPrice[i]
-            val lastChar = price.last()
-            val priceIntVale = if (lastChar == '₹'){
-                price.dropLast(1).toInt()
-            }else
-            {
-                price.toInt()
-            }
-            var quantity = foodItemQuantities[i]
-            totalAmount += priceIntVale *quantity
+        for (i in foodItemPrice.indices) {
+            val price = foodItemPrice[i]
+            val priceValue = if (price.last() == '₹') price.dropLast(1).toInt() else price.toInt()
+            val quantity = foodItemQuantities[i]
+            totalAmount += priceValue * quantity
         }
         return totalAmount
     }
@@ -143,23 +137,19 @@ class PayOutActivity : AppCompatActivity() {
 
             userReference.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-
-                    if (snapshot.exists()){
-                        val names = snapshot.child("name").getValue(String::class.java)?: ""
-                        val addresses = snapshot.child("address").getValue(String::class.java)?: ""
-                        val phones = snapshot.child("phone").getValue(String::class.java)?: ""
+                    if (snapshot.exists()) {
+                        val names = snapshot.child("name").getValue(String::class.java) ?: ""
+                        val addresses = snapshot.child("address").getValue(String::class.java) ?: ""
+                        val phones = snapshot.child("phone").getValue(String::class.java) ?: ""
                         binding.apply {
                             name.setText(names)
                             address.setText(addresses)
                             phone.setText(phones)
                         }
                     }
-
                 }
 
-                override fun onCancelled(error: DatabaseError) {
-
-                }
+                override fun onCancelled(error: DatabaseError) {}
             })
         }
     }

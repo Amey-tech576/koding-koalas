@@ -121,7 +121,6 @@ class HistoryFragment : Fragment() {
                 val isOrderIsAccepted = listOfOrderItem[0].orderAccepted
                 Log.d("TAG", "setDataInRecentBuyItem: $isOrderIsAccepted")
                 if (isOrderIsAccepted) {
-                    orderdStutus.background.setTint(Color.GREEN)
                     receivedButton.visibility = View.VISIBLE
                     sendOrderReadySMS()
                 }
