@@ -64,7 +64,7 @@
         android:fontFamily="@font/yeonsung_regular"
         android:text="Design By\nkoding-koalas"
         android:textAlignment="center"
-        android:textColor="@color/textColor"
+        android:textColor="#0B8910"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

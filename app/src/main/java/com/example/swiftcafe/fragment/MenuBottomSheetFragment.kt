@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.swiftcafe.databinding.FragmentMenuBottomSheetBinding
 import com.example.swiftcafe.Model.MenuItem
+import com.example.swiftcafe.adapter.MenuAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.database.DataSnapshot
-import com.example.swiftcafe.adapter.MenuAdapter
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -29,12 +29,22 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMenuBottomSheetBinding.inflate(inflater, container, false)
+
+        // Set up SwipeRefreshLayout
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            refreshMenuItems()
+        }
+
+        // Handle Back Button
         binding.buttonBack.setOnClickListener {
             dismiss()
         }
+
+        // Load menu items from Firebase
         retrieveMenuItems()
+
         return binding.root
     }
 
@@ -45,20 +55,29 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
 
         foodRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+                menuItems.clear()
                 for (foodSnapshot in snapshot.children) {
                     val menuItem = foodSnapshot.getValue(MenuItem::class.java)
                     menuItem?.let { menuItems.add(it) }
                 }
-                Log.d("ITEMS", "onDataChange: Data Received ")
-                // once data receive , set to adapter
+                Log.d("ITEMS", "onDataChange: Data Received")
                 setAdapter()
+
+                // Stop SwipeRefreshLayout animation if it's running
+                binding.swipeRefreshLayout.isRefreshing = false
             }
 
             override fun onCancelled(error: DatabaseError) {
-
+                Log.e("ITEMS", "onCancelled: Error fetching data", error.toException())
+                // Stop SwipeRefreshLayout animation in case of error
+                binding.swipeRefreshLayout.isRefreshing = false
             }
-
         })
+    }
+
+    private fun refreshMenuItems() {
+        // Refresh menu items from Firebase
+        retrieveMenuItems()
     }
 
     private fun setAdapter() {
@@ -66,9 +85,9 @@ class MenuBottomSheetFragment : BottomSheetDialogFragment() {
             val adapter = MenuAdapter(menuItems, requireContext())
             binding.menuRecyclerView.layoutManager = LinearLayoutManager(requireContext())
             binding.menuRecyclerView.adapter = adapter
-            Log.d("ITEMS", "setAdapter: data set")
+            Log.d("ITEMS", "setAdapter: Data set")
         } else {
-            Log.d("ITEMS", "setAdapter: data NOt set")
+            Log.d("ITEMS", "setAdapter: No data to set")
         }
     }
 

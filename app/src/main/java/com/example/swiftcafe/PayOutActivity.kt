@@ -122,7 +122,7 @@ class PayOutActivity : AppCompatActivity() {
         var totalAmount = 0
         for (i in foodItemPrice.indices) {
             val price = foodItemPrice[i]
-            val priceValue = if (price.last() == '₹') price.dropLast(1).toInt() else price.toInt()
+            val priceValue = if (price.first() == '₹') price.drop(1).toInt() else price.toInt()
             val quantity = foodItemQuantities[i]
             totalAmount += priceValue * quantity
         }

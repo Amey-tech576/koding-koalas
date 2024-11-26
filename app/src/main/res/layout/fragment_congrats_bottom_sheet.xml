@@ -21,7 +21,7 @@
             android:fontFamily="@font/yeonsung_regular"
             android:text="Congrats\nYour Order Placed"
             android:textAlignment="center"
-            android:textColor="@color/textColor"
+            android:textColor="@color/black"
             android:textSize="34sp" />
 
         <ImageView
@@ -30,7 +30,7 @@
             android:layout_height="200dp"
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
-            android:src="@drawable/congratulation" />
+            android:src="@drawable/congrats1" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/goHome"
@@ -38,7 +38,7 @@
             android:layout_height="57dp"
             android:layout_gravity="center"
             android:layout_marginTop="32dp"
-            android:background="@drawable/gohomeshape"
+            android:background="@drawable/textcolor"
             android:fontFamily="@font/yeonsung_regular"
             android:text="Go Home"
             android:textAllCaps="false"

@@ -241,9 +241,10 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/edittextshape"
+        android:background="@drawable/textcolor"
         android:fontFamily="@font/yeonsung_regular"
         android:text="Place My Order"
+        android:textSize="25sp"
         android:textAllCaps="false"
-        android:textColor="@color/black" />
+        android:textColor="@color/white" />
 </FrameLayout>

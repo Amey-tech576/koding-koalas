@@ -9,22 +9,23 @@ import com.example.swiftcafe.databinding.FragmentCongratsBottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class CongratsBottomSheet : BottomSheetDialogFragment() {
-    private lateinit var binding : FragmentCongratsBottomSheetBinding
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var binding: FragmentCongratsBottomSheetBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentCongratsBottomSheetBinding.inflate(layoutInflater,container,false)
+        binding = FragmentCongratsBottomSheetBinding.inflate(inflater, container, false)
+
         binding.goHome.setOnClickListener {
+            // Redirect to MainActivity (Homepage)
             val intent = Intent(requireContext(), com.example.swiftcafe.MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
+            // Close the current activity
+            activity?.finish()
         }
         return binding.root
-    }
-    companion object {
     }
 }

@@ -60,7 +60,7 @@
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/lato_regular"
                 android:text="₹5"
-                android:textColor="@color/black"
+                android:textColor="#0B8910"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.86"
@@ -70,7 +70,7 @@
             <TextView
                 android:id="@+id/menuAddToCart"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="22dp"
                 android:background="@drawable/addtocartshape"
                 android:fontFamily="@font/lato_regular"
                 android:gravity="center"

@@ -15,19 +15,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/app" />
+        app:srcCompat="@drawable/sipsavor" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:textColor="@color/textColor"
+        android:layout_marginTop="44dp"
         android:fontFamily="@font/yeonsung_regular"
         android:text="Sip and Savor"
+        android:textColor="@color/black"
         android:textSize="40sp"
 
         app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -37,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Deliever Favorite Food"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -49,7 +51,7 @@
         android:fontFamily="@font/yeonsung_regular"
         android:text="Designed By\nkoding-koalas"
         android:textAlignment="center"
-        android:textColor="@color/textColor"
+        android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

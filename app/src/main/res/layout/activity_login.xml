@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/app" />
+        app:srcCompat="@drawable/sipsavor" />
 
     <TextView
         android:id="@+id/textView6"
@@ -24,6 +24,7 @@
         android:fontFamily="@font/yeonsung_regular"
         android:text="Sip and Savor"
         android:textSize="40sp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
         app:layout_constraintStart_toStartOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
@@ -35,7 +36,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/lato_regular"
         android:text="Deliver Favourite Food"
-        android:textColor="@color/textColor"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -47,7 +48,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/lato_bold"
         android:text="Login To Your  Account"
-        android:textColor="@color/textColor"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/textView7"
         app:layout_constraintStart_toStartOf="@+id/textView7"
@@ -75,7 +76,7 @@
         android:id="@+id/password"
         android:layout_width="325dp"
         android:layout_height="57dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/edittextshape"
         android:drawableLeft="@drawable/lock"
         android:drawablePadding="15dp"
@@ -86,6 +87,7 @@
         android:inputType="textPassword"
         android:paddingLeft="15dp"
         app:layout_constraintEnd_toEndOf="@+id/emailAddress"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/emailAddress"
         app:layout_constraintTop_toBottomOf="@+id/emailAddress" />
 
@@ -160,12 +162,13 @@
         android:id="@+id/donthavebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:fontFamily="@font/lato_regular"
         android:text="Don’t Have Account?"
-        android:textColor="@color/textColor"
+        android:textColor="@color/background"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/loginButton"
+        app:layout_constraintHorizontal_bias="0.454"
         app:layout_constraintStart_toStartOf="@+id/loginButton"
         app:layout_constraintTop_toBottomOf="@+id/loginButton" />
 
@@ -177,7 +180,7 @@
         android:fontFamily="@font/yeonsung_regular"
         android:text="Designed By\nkoding-koalas"
         android:textAlignment="center"
-        android:textColor="@color/textColor"
+        android:textColor="@color/black"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

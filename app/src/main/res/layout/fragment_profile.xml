@@ -171,7 +171,7 @@
         android:fontFamily="@font/yeonsung_regular"
         android:text="Save Information"
         android:textAllCaps="false"
-        android:textColor="@color/textColor"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
 </FrameLayout>

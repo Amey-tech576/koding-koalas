@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/yeonsung_regular"
                 android:text="₹5"
-                android:textColor="@color/black"
+                android:textColor="#0B8910"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/buyAgainFoodName"
