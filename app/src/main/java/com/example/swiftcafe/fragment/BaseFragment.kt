@@ -34,7 +34,8 @@ open class BaseFragment : Fragment() {
             recyclerView.adapter?.notifyDataSetChanged()  // Update RecyclerView adapter
 
         // Stop the refreshing animation
-
-        swipeRefreshLayout.isRefreshing = false
+        if(notifyDataSetChanged==true) {
+            swipeRefreshLayout.isRefreshing = false
+        }
     }
 }
