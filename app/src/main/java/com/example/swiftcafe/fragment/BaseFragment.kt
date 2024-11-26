@@ -1,6 +1,8 @@
 package com.example.swiftcafe
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,20 +24,18 @@ open class BaseFragment : Fragment() {
         recyclerView = rootView.findViewById(R.id.recyclerView)
 
         swipeRefreshLayout.setOnRefreshListener {
-            refreshData()
+            refreshData() // Trigger data refresh
         }
 
         return rootView
     }
 
     open fun refreshData() {
-        // Override this in your fragments to refresh the data
-        var notifyDataSetChanged =true
-            recyclerView.adapter?.notifyDataSetChanged()  // Update RecyclerView adapter
+        recyclerView.adapter?.notifyDataSetChanged() // Notify RecyclerView adapter
 
-        // Stop the refreshing animation
-
+        // Delay stopping the animation to 2 seconds
+        Handler(Looper.getMainLooper()).postDelayed({
             swipeRefreshLayout.isRefreshing = false
-
+        }, 2000)
     }
 }

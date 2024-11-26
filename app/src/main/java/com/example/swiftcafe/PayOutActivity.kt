@@ -2,13 +2,13 @@ package com.example.swiftcafe
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.RadioButton
 import android.widget.Toast
-import com.example.swiftcafe.fragment.CongratsBottomSheet
-import com.example.swiftcafe.databinding.ActivityPayOutBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.example.swiftcafe.Model.OrderDetails
+import com.example.swiftcafe.databinding.ActivityPayOutBinding
+import com.example.swiftcafe.fragment.CongratsBottomSheet
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -118,7 +118,7 @@ class PayOutActivity : AppCompatActivity() {
         cartItemsReference.removeValue()
     }
 
-    private fun calculateTotalAmount(): Int {
+    private fun calculateTotalAmount(): String {
         var totalAmount = 0
         for (i in foodItemPrice.indices) {
             val price = foodItemPrice[i]
@@ -126,7 +126,7 @@ class PayOutActivity : AppCompatActivity() {
             val quantity = foodItemQuantities[i]
             totalAmount += priceValue * quantity
         }
-        return totalAmount
+        return "₹ "+totalAmount
     }
 
     private fun setUserData() {

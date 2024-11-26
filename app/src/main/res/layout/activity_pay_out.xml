@@ -140,6 +140,7 @@
                 android:ems="10"
                 android:fontFamily="@font/lato_regular"
                 android:inputType="phone"
+                android:maxLength="10"
                 android:textColor="@color/black" />
         </LinearLayout>
 

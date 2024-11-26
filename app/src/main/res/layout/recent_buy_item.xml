@@ -54,7 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/lato_regular"
-                android:text="₹5"
+                android:text="₹ 5"
                 android:textColor="#0B8910"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
